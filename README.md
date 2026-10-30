@@ -3,7 +3,7 @@
 **Unofficial desktop utility for Team Fortress 2 idle sessions and item-drop notifications.**  
 Windows 10/11 (x64) · .NET 8 WinForms · portable, self-contained build.
 
-> **Status:** v1.0.0 source prepared from the user-validated v0.5.5.1 release candidate. Build and audit the public portable ZIP on Windows before attaching it to a GitHub Release. This source ZIP **does not contain a prebuilt EXE**.
+> **Status:** [v1.0.0 is publicly released](https://github.com/SebaGutierrezF/tf2-idle-manager/releases/tag/v1.0.0). Download the audited Windows x64 portable ZIP under **Assets**. GitHub's automatically generated **Source code** archive is not the executable.
 
 ## Features
 
@@ -18,7 +18,7 @@ Windows 10/11 (x64) · .NET 8 WinForms · portable, self-contained build.
 
 ## Download and install (portable users)
 
-1. Open the repository's **Releases** page and download **`TF2IdleManager_v1.0.0-win-x64-portable.zip`** (once published). **Do not use GitHub's auto-generated “Source code” ZIP as the application executable.**
+1. **[Download the v1.0.0 Windows portable ZIP](https://github.com/SebaGutierrezF/tf2-idle-manager/releases/download/v1.0.0/TF2IdleManager_v1.0.0-win-x64-portable.zip)** from the official Release. **Do not use GitHub's auto-generated “Source code” ZIP as the application executable.**
 2. Extract the entire portable ZIP to a normal writable folder, away from older versions. Do not run the EXE from within the ZIP.
 3. Open `TF2IdleManager.exe`. Steam and TF2 must be installed locally. Configure a TF2 idle server and, if you want drop alerts, a Steam Web API key.
 4. Choose a class and press **START IDLE**. Drops are acknowledged manually inside TF2; **STOP** ends the managed session.
