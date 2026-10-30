@@ -1,0 +1,4 @@
+# Show GitHub's "Sponsor this project" entry with a custom support link.
+# GitHub Sponsors is intentionally not listed unless the account has that program enabled.
+custom:
+  - https://buymeacoffee.com/sebagutierrezf

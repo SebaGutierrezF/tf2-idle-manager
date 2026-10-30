@@ -1,74 +1,139 @@
-# TF2 Idle Manager v1.0.0
+<p align="center">
+  <img src="assets/TF2IdleManager.png" alt="TF2 Idle Manager icon" width="122" />
+</p>
 
-**Unofficial desktop utility for Team Fortress 2 idle sessions and item-drop notifications.**  
-Windows 10/11 (x64) · .NET 8 WinForms · portable, self-contained build.
+<h1 align="center">TF2 Idle Manager</h1>
 
-> **Status:** [v1.0.0 is publicly released](https://github.com/SebaGutierrezF/tf2-idle-manager/releases/tag/v1.0.0). Download the audited Windows x64 portable ZIP under **Assets**. GitHub's automatically generated **Source code** archive is not the executable.
+<p align="center">
+  <strong>A portable Windows companion for Team Fortress 2 idle sessions and item-drop notifications.</strong><br />
+  Automatically join community servers, recover interrupted sessions, and keep track of your drops.
+</p>
 
-## Features
+<p align="center">
+  <a href="https://github.com/SebaGutierrezF/tf2-idle-manager/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/SebaGutierrezF/tf2-idle-manager?style=for-the-badge&label=release&color=2ea44f" /></a>
+  <img alt="Windows x64" src="https://img.shields.io/badge/platform-Windows%20x64-0078D4?style=for-the-badge&logo=windows" />
+  <img alt=".NET 8" src="https://img.shields.io/badge/.NET-8.0-512BD4?style=for-the-badge&logo=dotnet" />
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" /></a>
+</p>
 
-- Connect to a chosen TF2 community idle server, select one of nine classes or Random, and issue `+attack` / `+left` as configured.
-- Automatically handle initial welcome/team/class screens; send **ESC before minimizing** to help release the mouse cursor.
-- Detect full or stalled servers, recover from disconnections, process restarts and map changes; optional failover to saved servers.
-- Notify about TF2 unacknowledged item drops using Steam Web API; item name and image when metadata is available.
-- Optional repeated notifications, configurable position on any of four screen corners and dark/light themes.
-- Separate regular drops from containers/cases. History, weekly estimates and session logs are isolated by **SteamID64**.
-- Primary and optional secondary Steam Web API keys encrypted for the current Windows user with **DPAPI**; no keys bundled with the portable EXE.
-- CSV export, session and weekly comparisons, and a read-only item history. **Items are not acknowledged automatically.**
+<p align="center">
+  <a href="https://github.com/SebaGutierrezF/tf2-idle-manager/actions/workflows/windows-build.yml"><img alt="Windows build and security audit" src="https://github.com/SebaGutierrezF/tf2-idle-manager/actions/workflows/windows-build.yml/badge.svg" /></a>
+  <a href="https://buymeacoffee.com/sebagutierrezf"><img alt="Buy Me a Coffee" src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support%20the%20project-FFDD00?logo=buymeacoffee&logoColor=black" /></a>
+</p>
 
-## Download and install (portable users)
-
-1. **[Download the v1.0.0 Windows portable ZIP](https://github.com/SebaGutierrezF/tf2-idle-manager/releases/download/v1.0.0/TF2IdleManager_v1.0.0-win-x64-portable.zip)** from the official Release. **Do not use GitHub's auto-generated “Source code” ZIP as the application executable.**
-2. Extract the entire portable ZIP to a normal writable folder, away from older versions. Do not run the EXE from within the ZIP.
-3. Open `TF2IdleManager.exe`. Steam and TF2 must be installed locally. Configure a TF2 idle server and, if you want drop alerts, a Steam Web API key.
-4. Choose a class and press **START IDLE**. Drops are acknowledged manually inside TF2; **STOP** ends the managed session.
-
-The portable package contains an EXE, two icon assets and documentation. It does not require installing the .NET 8 runtime separately. More: `PORTABLE.md`.
-
-## Build from source (Windows)
-
-Requires the **.NET 8 SDK** and PowerShell:
-
-```bat
-BUILD_RELEASE.bat
-```
-
-The builder executes offline regression tests, publishes a self-contained `win-x64` EXE, audits an exact allowlist of distributed files, packages the ZIP, repeats the audit and writes a SHA-256 checksum. **Do not bypass `AUDIT_RELEASE.ps1`.**
-
-For development:
-
-```bat
-RUN_DEV.bat
-```
-
-The sources include a Windows GitHub Actions workflow that builds and audits the ZIP. See `PUBLISH_GITHUB.md` for release instructions.
-
-## Privacy and data
-
-Data is local at `%LOCALAPPDATA%\TF2IdleManager`; histories and weekly/session data use `accounts\<SteamID64>`. API keys are protected with Windows DPAPI and are not portable between Windows users. CSV exports and logs **may contain SteamIDs and activity information**, so review them before sharing. See `PRIVACY.md`.
-
-## Known limitations
-
-- The TF2/Steam Web API can respond with `503` or other temporary errors; alerts may be delayed or unavailable until it recovers. A backup key cannot fix a Valve-wide outage.
-- Time-to-next-drop and number of remaining regular weekly drops are **estimates**, never exact Valve counters. Cases/containers are recorded separately.
-- Automatic entry depends on Steam, the TF2 client, third-party servers, Windows window focus and user permissions. Full servers may delay an idle session.
-- No auto-acknowledgment, auto-trading, buying or selling. This is **not** a Valve/Steam-approved or affiliated product. Follow the game and server rules.
-- No code signing certificate is included; Windows may present a SmartScreen warning. Do not disable Windows security protections to run untrusted files.
-
-## Screenshots and release notes
-
-Sanitized screenshots of **previous validated 0.5.x UI builds** are in [`docs/SCREENSHOTS.md`](docs/SCREENSHOTS.md); they are illustrative, not a claim that a v1.0.0 binary was captured. Release description: `RELEASE_BODY_GITHUB.md`.
-
-## License
-
-**MIT License.** Source code is licensed under the MIT License already published in the repository (`LICENSE`). Team Fortress 2, Steam, game artwork and related trademarks belong to their respective owners; this utility is unofficial and not affiliated with Valve.
+<p align="center">
+  <a href="https://github.com/SebaGutierrezF/tf2-idle-manager/releases/latest"><strong>⬇ Download latest release</strong></a>
+  &nbsp;·&nbsp; <a href="#features">Features</a>
+  &nbsp;·&nbsp; <a href="#screenshots">Screenshots</a>
+  &nbsp;·&nbsp; <a href="#installation">Installation</a>
+  &nbsp;·&nbsp; <a href="SECURITY.md">Security</a>
+  &nbsp;·&nbsp; <a href="#build-from-source">Build from source</a>
+</p>
 
 ---
 
-## Resumen en español
+## Preview
 
-**TF2 Idle Manager** permite iniciar sesiones en servidores idle comunitarios de TF2, elegir clase, ejecutar los comandos configurados, recuperar conexiones y recibir avisos de objetos aún pendientes de reconocer. Incluye estadísticas separadas por cuenta, contenedores aparte de drops regulares, historial visual y exportación CSV.
+<p align="center">
+  <a href="docs/screenshots/dashboard.png"><img src="docs/screenshots/dashboard.png" alt="TF2 Idle Manager dark-mode dashboard (sanitized pre-release screenshot)" width="920" /></a>
+</p>
 
-Para usarlo, descarga el **ZIP portable de GitHub Releases**, descomprímelo y ejecuta `TF2IdleManager.exe`; el ZIP de código fuente **no es el ejecutable**. Las alertas necesitan una Steam Web API key válida; si Valve devuelve `503`, la notificación puede retrasarse. El programa **no acepta los objetos por ti**. Las horas y drops restantes son estimaciones, no cifras oficiales.
+> Screenshots are anonymized examples from validated pre-release v0.5.x builds; they illustrate the interface, not a claimed screenshot of the v1.0.0 executable.
 
-El programa guarda sus datos en `%LOCALAPPDATA%\TF2IdleManager` y cifra las claves con DPAPI. Es una herramienta no oficial y no está asociada a Valve.
+## Features
+
+| 🎮 Session automation | 🛡️ Smart recovery |
+|:--|:--|
+| Choose any TF2 class or **Random**, join a community idle server, and use configurable `+attack` / `+left`. **ESC before minimizing** helps release mouse focus. | Handle full or unavailable servers, reconnect after disconnects and map changes, and optionally fail over to saved servers. |
+
+| 🔔 Drop notifications | 📊 Account-aware statistics |
+|:--|:--|
+| Receive drop notifications with **item names and images** when available. Pick one of four screen corners and optionally repeat alerts until the item is acknowledged. | Monitor **regular drops separately from cases/containers**, weekly estimates, tracked idle time and session history; data remains isolated by SteamID64. |
+
+| 🎨 Desktop experience | 🔐 Local-first |
+|:--|:--|
+| Dark/light dashboard, item history with images, weekly comparison, **CSV export**, and a self-contained Windows portable release. | Steam Web API keys are encrypted locally with **Windows DPAPI**. An optional backup key can be configured. There is no custom telemetry backend. |
+
+## Screenshots
+
+<table>
+  <tr>
+    <td align="center" width="50%"><a href="docs/screenshots/weekly.png"><img src="docs/screenshots/weekly.png" alt="Weekly details and drop tracking" width="100%" /></a><br /><strong>Weekly details</strong></td>
+    <td align="center" width="50%"><a href="docs/screenshots/history.png"><img src="docs/screenshots/history.png" alt="Item history" width="100%" /></a><br /><strong>Item history</strong></td>
+  </tr>
+</table>
+
+See [more about these screenshots](docs/SCREENSHOTS.md).
+
+## Installation
+
+1. **[Get the latest release](https://github.com/SebaGutierrezF/tf2-idle-manager/releases/latest)** and download the **Windows x64 portable ZIP** under **Assets**. The current version is [v1.0.0](https://github.com/SebaGutierrezF/tf2-idle-manager/releases/tag/v1.0.0).
+2. **Extract** the ZIP completely to a normal folder. Do not run the program from inside the ZIP.
+3. Run **`TF2IdleManager.exe`**. The portable package contains the runtime; you do not need to install .NET 8 separately.
+4. Make sure Steam and Team Fortress 2 are installed. Configure a community server and, for drop notifications, your Steam Web API key.
+5. Pick a class and click **START IDLE**. Use **STOP** to end the managed session.
+
+**Windows SmartScreen:** the binary is not code-signed. Verify its origin and the SHA-256 file in the release before running it; do not disable your security protections to run files you do not trust.
+
+Read [PORTABLE.md](PORTABLE.md) for additional instructions.
+
+## How drop tracking works
+
+- The app monitors **unacknowledged TF2 items** via Steam Web API and shows a notification when it identifies a new pending item.
+- **You must acknowledge the item manually in TF2.** The program does not auto-accept, buy, sell or trade items.
+- Cases/containers are tracked separately from the regular weekly drop estimate.
+- Valve's API can return **HTTP 503** or otherwise become unavailable; detection may be delayed during an outage. A second key cannot fix a Valve-wide outage.
+- Next-drop timing and remaining weekly drops are **estimates**, not official Valve counters.
+
+## Privacy and security
+
+Your preferences, SteamID64-specific histories, session records and caches are stored locally under `%LOCALAPPDATA%\TF2IdleManager`. Steam Web API keys are encrypted using Windows DPAPI for your local Windows account. The public portable ZIP is audited to exclude personal settings, histories, API keys and logs.
+
+⚠️ Logs and CSV exports **may contain SteamID64 values, timestamps and server addresses**. Please redact sensitive information before sharing them publicly.
+
+Read the [privacy policy](PRIVACY.md), [security policy](SECURITY.md), and [support guide](SUPPORT.md).
+
+## Build from source
+
+Requirements: **Windows x64**, the **.NET 8 SDK**, PowerShell and Git (optional for cloning).
+
+```bat
+RUN_TESTS.bat
+BUILD_RELEASE.bat
+```
+
+`BUILD_RELEASE.bat` runs offline regression tests, publishes a self-contained executable, audits an **exact allowlist** of distributed files, creates the portable ZIP and writes a SHA-256 checksum. **Do not bypass `AUDIT_RELEASE.ps1`.**
+
+GitHub Actions also runs the Windows build and security audit. For local development, use `RUN_DEV.bat`.
+
+## Contributing and support
+
+Bug reports and feature suggestions are welcome via [Issues](https://github.com/SebaGutierrezF/tf2-idle-manager/issues). Please read [CONTRIBUTING.md](CONTRIBUTING.md) and [SUPPORT.md](SUPPORT.md). For suspected vulnerabilities, see [SECURITY.md](SECURITY.md) before reporting anything publicly.
+
+<p align="center">
+  <a href="https://buymeacoffee.com/sebagutierrezf"><img alt="Support TF2 Idle Manager on Buy Me a Coffee" src="https://img.shields.io/badge/☕_Buy_Me_a_Coffee-Support_this_project-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" /></a>
+</p>
+
+Supporting the project is **entirely optional** and does not affect access to its open-source features.
+
+## License and disclaimer
+
+Licensed under the **[MIT License](LICENSE)**. TF2 Idle Manager is an **unofficial community utility**, not affiliated with, endorsed by, or approved by Valve or Steam. Team Fortress 2/Steam names, artwork and trademarks belong to their respective owners. Follow the game and community-server rules.
+
+---
+
+<details>
+<summary><strong>🇨🇱 Resumen en español</strong></summary>
+
+**TF2 Idle Manager** es una aplicación portable para Windows que administra sesiones en servidores idle comunitarios de Team Fortress 2, selecciona clases y muestra notificaciones de objetos. También permite guardar servidores alternativos, recuperar desconexiones, consultar historial por cuenta y exportar estadísticas CSV.
+
+1. Descarga el ZIP de **[Releases](https://github.com/SebaGutierrezF/tf2-idle-manager/releases/latest)** (no el ZIP automático de código fuente).
+2. Descomprímelo y ejecuta `TF2IdleManager.exe`.
+3. Configura Steam, TF2, un servidor y tu Steam Web API key para recibir alertas.
+4. Inicia con **START IDLE**. Los objetos se reconocen **manualmente** dentro de TF2.
+
+El programa separa los contenedores de los drops regulares, guarda el historial por SteamID64 y cifra las claves API mediante DPAPI. Las cifras de drops restantes son **estimaciones**, no límites oficiales. No está asociado a Valve.
+
+Si deseas apoyar el desarrollo, puedes hacerlo mediante [Buy Me a Coffee](https://buymeacoffee.com/sebagutierrezf). Es completamente voluntario.
+
+</details>

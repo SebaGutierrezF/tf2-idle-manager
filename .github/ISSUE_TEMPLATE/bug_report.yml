@@ -1,0 +1,54 @@
+name: Bug report
+description: Report an issue with TF2 Idle Manager (please redact sensitive data)
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: "Thank you for reporting a bug. Never paste Steam API keys, passwords, full personal paths, or unredacted SteamIDs."
+  - type: input
+    id: version
+    attributes:
+      label: Application version
+      placeholder: v1.0.0
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      placeholder: Windows 11 x64
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. Open app... 2. Click... 3. Observe..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Redacted logs or screenshots (optional)
+      description: Remove API keys, SteamIDs and personal paths before attaching them.
+    validations:
+      required: false
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I have removed API keys and personal information from this report.
+          required: true
