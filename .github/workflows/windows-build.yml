@@ -34,15 +34,15 @@ jobs:
           Copy-Item README.md, PORTABLE.md, RELEASE-NOTES.txt -Destination $dir -ErrorAction Stop
           New-Item -ItemType Directory -Path "$dir/assets" -Force | Out-Null
           Copy-Item assets/TF2IdleManager.ico, assets/TF2IdleManager.png -Destination "$dir/assets" -ErrorAction Stop
+          # PowerShell scripts fail this step by throwing; LASTEXITCODE belongs to native executables.
           ./AUDIT_RELEASE.ps1 -PackagePath $dir
-          if ($LASTEXITCODE -ne 0) { throw 'Directory audit failed' }
       - name: ZIP, audit and SHA-256
         shell: pwsh
         run: |
           $zip = 'release/TF2IdleManager_v1.0.0-win-x64-portable.zip'
           Compress-Archive -Path 'release/_publish/*' -DestinationPath $zip -CompressionLevel Optimal -Force
+          # Preserve all audit checks; a thrown audit error fails the job automatically.
           ./AUDIT_RELEASE.ps1 -PackagePath 'release/_publish' -ZipPath $zip
-          if ($LASTEXITCODE -ne 0) { throw 'ZIP audit failed' }
           $hash = (Get-FileHash -Algorithm SHA256 $zip).Hash.ToLowerInvariant()
           Set-Content -Path 'release/SHA256SUMS-v1.0.0.txt' -Value ($hash + '  TF2IdleManager_v1.0.0-win-x64-portable.zip') -Encoding ASCII
       - name: Upload audited candidate
