@@ -1,0 +1,55 @@
+name: Windows build and security audit
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows-portable:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Offline regression tests
+        run: dotnet run --project tests/TF2IdleManager.Tests.csproj -c Release
+      - name: Publish Windows x64
+        shell: pwsh
+        run: |
+          dotnet publish TF2IdleManager.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=None -p:DebugSymbols=false -o release/_publish
+          if ($LASTEXITCODE -ne 0) { throw 'Publish failed' }
+      - name: Stage exactly permitted files and audit
+        shell: pwsh
+        run: |
+          $dir = 'release/_publish'
+          Copy-Item README.md, PORTABLE.md, RELEASE-NOTES.txt -Destination $dir -ErrorAction Stop
+          New-Item -ItemType Directory -Path "$dir/assets" -Force | Out-Null
+          Copy-Item assets/TF2IdleManager.ico, assets/TF2IdleManager.png -Destination "$dir/assets" -ErrorAction Stop
+          ./AUDIT_RELEASE.ps1 -PackagePath $dir
+          if ($LASTEXITCODE -ne 0) { throw 'Directory audit failed' }
+      - name: ZIP, audit and SHA-256
+        shell: pwsh
+        run: |
+          $zip = 'release/TF2IdleManager_v1.0.0-win-x64-portable.zip'
+          Compress-Archive -Path 'release/_publish/*' -DestinationPath $zip -CompressionLevel Optimal -Force
+          ./AUDIT_RELEASE.ps1 -PackagePath 'release/_publish' -ZipPath $zip
+          if ($LASTEXITCODE -ne 0) { throw 'ZIP audit failed' }
+          $hash = (Get-FileHash -Algorithm SHA256 $zip).Hash.ToLowerInvariant()
+          Set-Content -Path 'release/SHA256SUMS-v1.0.0.txt' -Value ($hash + '  TF2IdleManager_v1.0.0-win-x64-portable.zip') -Encoding ASCII
+      - name: Upload audited candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: TF2IdleManager_v1.0.0-win-x64-portable
+          path: |
+            release/TF2IdleManager_v1.0.0-win-x64-portable.zip
+            release/SHA256SUMS-v1.0.0.txt
+          if-no-files-found: error

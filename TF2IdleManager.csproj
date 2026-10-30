@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <AssemblyName>TF2IdleManager</AssemblyName>
+    <RootNamespace>TF2IdleManager</RootNamespace>
+
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <InformationalVersion>1.0.0</InformationalVersion>
+
+    <Title>TF2 Idle Manager</Title>
+    <Product>TF2 Idle Manager</Product>
+    <Authors>SebaGutierrezF</Authors>
+    <Description>Windows utility for launching Team Fortress 2 into a configured idle server and notifying about unacknowledged TF2 item drops.</Description>
+    <Copyright>Copyright © 2026</Copyright>
+    <ApplicationIcon>assets\TF2IdleManager.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="tests\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="assets\TF2IdleManager.ico" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <None Update="assets\TF2IdleManager.png" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,21 @@
+TF2 Idle Manager v1.0.0 — First public release (Windows x64)
+
+Release candidate validated in real TF2 sessions prior to the v1.0.0 version-only packaging.
+
+Features:
+- Auto Class: 9 playable classes or Random; +attack and +left options.
+- ESC before minimizing after class verification; recovery after map changes and reconnects.
+- Server join watchdog: full servers, bounded retries and optional saved-server failover.
+- Drop alerts with item name/image where available, configurable corner/repetition/acknowledgment.
+- Steam Web API monitoring with optional DPAPI-encrypted secondary key.
+- Account-isolated statistics by SteamID64; regular drops and cases separately tracked.
+- Dark/light dashboard, illustrated item history, session/weekly reports and CSV exports.
+- Strict portable file allowlist and offline regression tests.
+
+Important:
+- Drop recognition remains manual in TF2; no buying/selling/trading features.
+- Steam Web API 503 errors may delay detection; backup key cannot fix a service-wide outage.
+- Remaining drops and timing are estimates; not exact Valve-provided counters.
+- This program is unofficial and not affiliated with Valve/Steam.
+
+The v1.0.0 executable must be compiled on Windows and pass BUILD_RELEASE.bat and real-game validation before publication.

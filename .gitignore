@@ -1,0 +1,30 @@
+# Build products and temporary files
+bin/
+obj/
+release/
+**/bin/
+**/obj/
+.vs/
+.idea/
+*.user
+*.suo
+TestResults/
+*.tmp
+*.bak
+
+# Never commit local app data, credentials or exported histories
+settings.json
+steam-web-api-key*.dat
+accounts/
+logs/
+cache/
+*.csv
+*.log
+*.pfx
+*.p12
+*.pem
+.env
+.env.*
+
+# Personal screenshots must be sanitized separately
+raw_screenshots/
